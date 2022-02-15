@@ -1,20 +1,22 @@
 import s from "./MyPosts.module.css";
 import Post from "./Post/Post";
 
-const MyPosts = () => {
-  return (
-    <div>
-      my posts
-      <div>
-        <textarea></textarea>
-        <button>Add</button>
-      </div>
-      <div className={s.posts}>
-        <Post message='Hi, how are you?' likesCount='15' />
-        <Post message='it is my first post' likesCount='40' />
-      </div>
-    </div>
-  );
+const MyPosts = (props) => {
+
+    let postsElements = props.posts.map(p => <Post message={p.message} likesCount={p.likesCount}/>)
+
+    return (
+        <div className={s.postsBlock}>
+            <h3>My posts</h3>
+            <div className={s.addPostBlock}>
+                <textarea></textarea>
+                <button>Add</button>
+            </div>
+            <div className={s.posts}>
+                {postsElements}
+            </div>
+        </div>
+    );
 };
 
 export default MyPosts;

@@ -1,18 +1,14 @@
 import MyPosts from './MyPosts/MyPosts';
 import s from './Profile.module.css'
+import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
-const Profile = () => {
-  return (
-    <div>
-      <div>
-        <img src='https://zafardartravels.com/wp-content/uploads/2013/08/istanbul-turkey-825x385.jpg' />
-      </div>
-      <div>
-        ava + description
-      </div>
-      <MyPosts />
-    </div>
-  );
+const Profile = (props) => {
+    return (
+        <div>
+            <ProfileInfo/>
+            <MyPosts posts={props.state.posts}/>
+        </div>
+    );
 };
 
 export default Profile;

@@ -7,9 +7,12 @@
   "nav content";
   grid-template-rows: 60px 1fr;
   grid-template-columns: 2fr 10fr;
+  grid-gap: 10px;
 }
 
 .app-wrapper-content {
   grid-area: content;
-  background-color: rgb(228, 151, 51);
+  background-color: #fff;
+  border-radius: 15px;
+  overflow: hidden;
 }

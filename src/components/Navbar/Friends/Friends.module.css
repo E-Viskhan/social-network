@@ -1,0 +1,11 @@
+.friends {
+    font-size: 20px;
+}
+
+.friendsWrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.friendsTitle {
+}
