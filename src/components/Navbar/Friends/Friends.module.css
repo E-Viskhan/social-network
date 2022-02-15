@@ -1,5 +1,8 @@
 .friends {
     font-size: 20px;
+    background-color: #FFF;
+    padding: 20px;
+    border-radius: 15px;
 }
 
 .friendsWrapper {
@@ -8,4 +11,6 @@
 }
 
 .friendsTitle {
+    margin-bottom: 10px;
+    font-size: 20px;
 }
