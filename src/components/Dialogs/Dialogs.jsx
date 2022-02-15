@@ -9,12 +9,12 @@ const Dialogs = (props) => {
 
     return (
         <div className={s.dialogs}>
-            <div className={s.dialogsItems}>
+            <ul className={s.dialogsItems}>
                 {dialogsElements}
-            </div>
-            <div className={s.messages}>
+            </ul>
+            <ul className={s.messages}>
                 {messagesElements}
-            </div>
+            </ul>
         </div>
     );
 };

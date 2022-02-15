@@ -6,9 +6,9 @@ const DialogItem = (props) => {
     const setActive = ({isActive}) => isActive ? s.active : '';
 
     return (
-        <div className={s.dialog}>
+        <li className={s.dialog}>
             <NavLink to={path} className={setActive}>{props.name}</NavLink>
-        </div>
+        </li>
     );
 };
 
