@@ -4,8 +4,24 @@
 }
 
 .dialogsItems {
-    padding: 10px;
+    width: 250px;
     list-style: none;
+    border-right: 1px solid #eeeeee;
+}
+
+.dialogItemWrapper {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.dialogItemWrapper img {
+    margin-right: 15px;
+    border-radius: 50%;
+}
+
+.dialog:not(:last-of-type) {
+    border-bottom: 1px solid #eeeeee;
 }
 
 .dialog a {
@@ -13,15 +29,71 @@
     text-decoration: none;
 }
 
-.dialog a.active {
-    color: #416aba;
+.dialog a.active div {
+    background-color: #efefef;
+}
+
+.messagesBlock {
+    padding: 10px 10px;
 }
 
 .messages {
-    padding: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
     list-style: none;
 }
 
 .message {
+    padding: 14px;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 24px;
+    color: #000;
+    border-radius: 10px;
+    box-shadow: 0 8px 30px rgb(0 0 0 / 5%);
+}
 
+.message:not(:last-of-type) {
+    margin-bottom: 5px;
+}
+
+.incomingMess {
+    align-self: flex-start;
+    background-color: #E6EEFF;
+}
+
+.outgoingMess {
+    align-self: flex-end;
+    background-color: #0055FF;
+    color: #fff;
+}
+
+form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+form input {
+    width: calc(100% - 50px);
+    padding: 10px 15px;
+    border: 0;
+    border-radius: 30px;
+    font-weight: 500;
+    font-size: 14px;
+    color: black;
+    background-color: #EBF2FF;
+    resize: none;
+    outline: none;
+}
+
+form button {
+    width: 40px;
+    height: 40px;
+    color: white;
+    background-color: #0055FF;
+    border: 0;
+    border-radius: 20px;
 }
