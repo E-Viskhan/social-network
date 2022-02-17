@@ -3,6 +3,7 @@ import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import {ArrowRight} from "react-feather";
 import React from "react";
+import {addMessageActionCreator, updateNewMessageTextActionCreator} from "../../redux/state";
 
 const Dialogs = (props) => {
 
@@ -13,13 +14,13 @@ const Dialogs = (props) => {
 
     const addMessage = (e) => {
         e.preventDefault();
-        const action = {type: 'ADD-MESSAGE'};
+        const action = addMessageActionCreator();
         props.dispatch(action);
     };
 
     const onMessageChange = () => {
         const text = newMessageElement.current.value;
-        const action = {type: 'UPDATE-NEW-MESSAGE-TEXT', newText: text};
+        const action = updateNewMessageTextActionCreator(text);
         props.dispatch(action)
     };
 
