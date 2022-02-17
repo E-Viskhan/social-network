@@ -6,15 +6,21 @@ import React from "react";
 
 const Dialogs = (props) => {
 
-    let dialogsElements = props.state.dialogs.map(d => <DialogItem dialog={d}/>)
-    let messagesElements = props.state.messages.map(m => <Message message={m}/>)
+    let dialogsElements = props.dialogsPage.dialogs.map(d => <DialogItem dialog={d}/>)
+    let messagesElements = props.dialogsPage.messages.map(m => <Message message={m}/>)
 
     const newMessageElement = React.createRef();
 
     const addMessage = (e) => {
         e.preventDefault();
+        const action = {type: 'ADD-MESSAGE'};
+        props.dispatch(action);
+    };
+
+    const onMessageChange = () => {
         const text = newMessageElement.current.value;
-        alert(text)
+        const action = {type: 'UPDATE-NEW-MESSAGE-TEXT', newText: text};
+        props.dispatch(action)
     };
 
     return (
@@ -23,7 +29,12 @@ const Dialogs = (props) => {
             <div className={s.messagesBlock}>
                 <ul className={s.messages}>{messagesElements}</ul>
                 <form onSubmit={addMessage}>
-                    <input ref={newMessageElement} type="text" placeholder='Start typing...'/>
+                    <input ref={newMessageElement}
+                           type="text"
+                           placeholder='Start typing...'
+                           value={props.dialogsPage.newMessageText}
+                           onChange={onMessageChange}
+                    />
                     <button type="submit"><ArrowRight/></button>
                 </form>
             </div>

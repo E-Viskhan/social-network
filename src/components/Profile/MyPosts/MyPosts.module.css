@@ -9,12 +9,16 @@
 }
 
 .addPostBlock textarea {
+    padding: 10px;
     margin-bottom: 5px;
     height: 100px;
     resize: none;
     border: none;
     outline: none;
     border-radius: 3px;
+    background-color: #416aba;
+    color: white;
+    border-radius: 10px;
 }
 
 .addPostBlock button {
@@ -22,4 +26,6 @@
     margin-bottom: 10px;
     border: none;
     border-radius: 3px;
+    cursor: pointer;
+    background-color: #416aba;
 }
