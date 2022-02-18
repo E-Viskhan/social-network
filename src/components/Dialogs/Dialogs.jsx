@@ -6,8 +6,8 @@ import React from "react";
 
 const Dialogs = (props) => {
 
-    let dialogsElements = props.dialogs.map(d => <DialogItem dialog={d}/>)
-    let messagesElements = props.messages.map(m => <Message message={m}/>)
+    let dialogsElements = props.dialogsPage.dialogs.map(d => <DialogItem dialog={d}/>)
+    let messagesElements = props.dialogsPage.messages.map(m => <Message message={m}/>)
 
     const onAddMessage = (e) => {
         e.preventDefault();
@@ -27,7 +27,7 @@ const Dialogs = (props) => {
                 <form onSubmit={onAddMessage}>
                     <input type="text"
                            placeholder='Start typing...'
-                           value={props.newMessageText}
+                           value={props.dialogsPage.newMessageText}
                            onChange={onMessageChange}
                     />
                     <button type="submit"><ArrowRight/></button>
