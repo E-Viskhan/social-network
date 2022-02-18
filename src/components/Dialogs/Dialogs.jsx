@@ -3,23 +3,20 @@ import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import {ArrowRight} from "react-feather";
 import React from "react";
-import {addMessageActionCreator, updateNewMessageTextActionCreator} from "../../redux/dialogs-reducer";
 
 const Dialogs = (props) => {
 
-    let dialogsElements = props.dialogsPage.dialogs.map(d => <DialogItem dialog={d}/>)
-    let messagesElements = props.dialogsPage.messages.map(m => <Message message={m}/>)
+    let dialogsElements = props.dialogs.map(d => <DialogItem dialog={d}/>)
+    let messagesElements = props.messages.map(m => <Message message={m}/>)
 
-    const addMessage = (e) => {
+    const onAddMessage = (e) => {
         e.preventDefault();
-        const action = addMessageActionCreator();
-        props.dispatch(action);
+        props.addMessage();
     };
 
     const onMessageChange = (e) => {
         const text = e.target.value;
-        const action = updateNewMessageTextActionCreator(text);
-        props.dispatch(action)
+        props.updateNewMessageText(text);
     };
 
     return (
@@ -27,10 +24,10 @@ const Dialogs = (props) => {
             <ul className={s.dialogsItems}>{dialogsElements}</ul>
             <div className={s.messagesBlock}>
                 <ul className={s.messages}>{messagesElements}</ul>
-                <form onSubmit={addMessage}>
+                <form onSubmit={onAddMessage}>
                     <input type="text"
                            placeholder='Start typing...'
-                           value={props.dialogsPage.newMessageText}
+                           value={props.newMessageText}
                            onChange={onMessageChange}
                     />
                     <button type="submit"><ArrowRight/></button>
