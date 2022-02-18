@@ -1,9 +1,14 @@
 import Navbar from "./Navbar";
+import StoreContext from "../../StoreContext";
 
-const NavbarContainer = (props) => {
-    const state = props.store.getState();
+const NavbarContainer = () => {
+    return <StoreContext.Consumer>
+        {store => {
+            const state = store.getState();
 
-    return (<Navbar friends={state.navbar.friends}/>);
+            return <Navbar friends={state.navbar.friends}/>
+        }}
+    </StoreContext.Consumer>
 };
 
 export default NavbarContainer;
