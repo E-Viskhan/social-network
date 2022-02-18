@@ -6,8 +6,8 @@ import React from "react";
 
 const Dialogs = (props) => {
 
-    let dialogsElements = props.dialogsPage.dialogs.map(d => <DialogItem dialog={d}/>)
-    let messagesElements = props.dialogsPage.messages.map(m => <Message message={m}/>)
+    const dialogsElements = props.dialogsPage.dialogs.map(d => <DialogItem key={d.id} dialog={d}/>)
+    const messagesElements = props.dialogsPage.messages.map(m => <Message key={m.id} message={m}/>)
 
     const onAddMessage = (e) => {
         e.preventDefault();

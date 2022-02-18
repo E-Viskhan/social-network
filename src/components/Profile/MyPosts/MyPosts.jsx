@@ -3,8 +3,8 @@ import Post from "./Post/Post";
 import React from "react";
 
 const MyPosts = (props) => {
-    let postsElements = props.profilePage.posts.map(p => <Post message={p.message} likesCount={p.likesCount}/>);
-    let newPostElement = React.createRef();
+    const postsElements = props.profilePage.posts.map(p => <Post key={p.id} postText={p.postText} likesCount={p.likesCount}/>);
+    const newPostElement = React.createRef();
 
     const onPostChange = () => {
         const text = newPostElement.current.value;
