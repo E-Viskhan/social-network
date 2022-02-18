@@ -46,7 +46,7 @@ const Navbar = (props) => {
                     </NavLink>
                 </li>
             </ul>
-            <Friends friends={props.state.Friends}/>
+            <Friends friends={props.state.friends}/>
         </nav>
     );
 };
