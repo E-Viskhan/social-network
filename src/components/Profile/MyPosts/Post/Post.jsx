@@ -4,7 +4,7 @@ const Post = (props) => {
   return (
     <div className={s.item}>
       <img src='https://shapka-youtube.ru/wp-content/uploads/2021/02/prikolnaya-avatarka-dlya-patsanov.jpg' />
-      <div>{props.message}</div>
+      <div>{props.postText}</div>
       <div>like {props.likesCount}</div>
     </div>
   );
