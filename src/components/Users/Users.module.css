@@ -1,0 +1,72 @@
+.users {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: #F6F7F9;
+    list-style: none;
+}
+
+.user {
+    width: 24%;
+    padding: 30px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    text-align: center;
+    color: black;
+}
+
+.avatar {
+    margin-bottom: 10px;
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.name {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.status {
+    min-height: 40px;
+    color: #686868;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    margin-bottom: 20px;
+}
+
+.followBtn {
+    width: 80%;
+    padding: 5px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border: 0;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.followBtn svg {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.followBtn span {
+    font-size: 14px;
+    line-height: 18px;
+}
+
+.follow {
+    background-color: #53D690;
+}
+
+.unfollow {
+    background-color: #E44D3A;
+}

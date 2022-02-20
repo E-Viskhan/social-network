@@ -1,7 +1,7 @@
 import s from './Navbar.module.css';
 import {NavLink} from "react-router-dom";
 import Friends from "./Friends/Friends";
-import {User, MessageCircle, Tv, Music, Settings} from "react-feather";
+import {User, MessageCircle, Tv, Music, Settings, Users} from "react-feather";
 
 const setActive = ({ isActive }) => isActive ? s.active : '';
 
@@ -27,6 +27,14 @@ const Navbar = (props) => {
                             <Tv/>
                         </i>
                         <span>News</span>
+                    </NavLink>
+                </li>
+                <li className={s.item}>
+                    <NavLink to='/users' className={setActive}>
+                        <i className={s.bgGreenGradiant}>
+                            <Users/>
+                        </i>
+                        <span>Users</span>
                     </NavLink>
                 </li>
                 <li className={s.item}>
