@@ -1,13 +1,12 @@
 .users {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 10px;
     background-color: #F6F7F9;
     list-style: none;
 }
 
 .user {
-    width: 24%;
     padding: 30px 10px;
     display: flex;
     flex-direction: column;

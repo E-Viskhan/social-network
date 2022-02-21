@@ -1,11 +1,12 @@
 import s from './Users.module.css'
 import {UserMinus, UserPlus} from "react-feather";
+import userPhoto from '../../assets/images/user.png';
 
 const User = (props) => {
     return (
         <li className={s.user}>
-            <img className={s.avatar} src={props.user.avatarUrl} alt="User avatar"/>
-            <h3 className={s.name}>{props.user.fullName}</h3>
+            <img className={s.avatar} src={props.user.photos.small ? props.user.photos.small : userPhoto} alt="User avatar"/>
+            <h3 className={s.name}>{props.user.name}</h3>
             <span className={s.status}>{props.user.status}</span>
             <button
                 onClick={() => props.toggleFollow(props.user.id)}
