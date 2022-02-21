@@ -1,50 +1,39 @@
-import s from './Users.module.css'
-import axios from "axios";
-import React from 'react';
-import User from "./User";
+import User from './User';
+import s from './Users.module.css';
+import Preloader from "../common/Preloader/Preloader";
 
-class Users extends React.Component{
-    componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users`,
-            {params: {count: this.props.pageSize, page: this.props.currentPage}})
-            .then(response => {
-                this.props.setUsers(response.data.items)
-                this.props.setTotalUsersCount(response.data.totalCount)
-            });
-    }
+const Users = (props) => {
+    const userElements = props.users.map(user => {
+        return <User key={user.id} user={user} toggleFollow={props.toggleFollow}/>
+    });
 
-    onPageChanged = (pageNumber) => {
-        this.props.setCurrentPage(pageNumber);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users`,
-            {params: {count: this.props.pageSize, page: pageNumber}})
-            .then(response => {
-                this.props.setUsers(response.data.items)
-            });
-    }
+    const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+    const pages = [];
 
-    render() {
-        const userElements = this.props.users.map(user => <User key={user.id} user={user} toggleFollow={this.props.toggleFollow}/>);
-        const pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize);
-        const pages = [];
-
-        for(let i = 1; i <= pagesCount; i++) {
-            pages.push(i);
-            if (i > 9) {break;}
+    for (let i = 1; i <= pagesCount; i++) {
+        pages.push(i);
+        if (i > 9) {
+            break;
         }
-
-        const pageNumberElements = pages.map(p => <li onClick={() => this.onPageChanged(p)}
-                           className={this.props.currentPage === p ? s.pageNumber + ' ' +s.selectedPage : s.pageNumber}>
-                    {p}
-                </li>
-            );
-
-        return (
-            <div className={s.container}>
-                <ol className={s.listPages}>{pageNumberElements}</ol>
-                <ol className={s.users}>{userElements}</ol>
-            </div>
-        );
     }
-}
+
+    const pageNumberElements = pages.map(p => {
+        return (
+            <li
+                key={p}
+                onClick={() => props.onPageChanged(p)}
+                className={props.currentPage === p ? s.pageNumber + ' ' + s.selectedPage : s.pageNumber}
+            >{p}</li>
+        );
+    });
+
+    return (
+        <div className={s.container}>
+            {props.isFetching ? <Preloader/> : null}
+            <ol className={s.listPages}>{pageNumberElements}</ol>
+            <ol className={s.users}>{userElements}</ol>
+        </div>
+    );
+};
 
 export default Users;
