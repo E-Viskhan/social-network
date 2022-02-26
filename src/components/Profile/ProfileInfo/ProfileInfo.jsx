@@ -43,7 +43,7 @@ const ProfileInfo = (props) => {
         for (let contact in contactsObj) {
             if (!contactsObj[contact]) {continue;}
             const contactElem =
-                <li className={s.contact}>
+                <li key={contact} className={s.contact}>
                     {getContactIcon(contact)}
                     <span>{contactsObj[contact]}</span>
                 </li>
