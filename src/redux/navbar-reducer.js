@@ -7,7 +7,7 @@ const initalState = {
         },
         {
             'id': 2,
-            name: 'Masha',
+            name: 'Grisha',
             avatarUrl: 'https://gambolthemes.net/workwise-new/images/resources/m-img6.png'
         },
         {'id': 3, name: 'Alex', avatarUrl: 'https://gambolthemes.net/workwise-new/images/resources/m-img7.png'}

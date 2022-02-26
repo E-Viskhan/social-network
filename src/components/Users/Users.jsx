@@ -28,11 +28,11 @@ const Users = (props) => {
     });
 
     return (
-        <div className={s.container}>
-            {props.isFetching ? <Preloader/> : null}
+        <>
+            {/*{props.isFetching ? <Preloader/> : null}*/}
             <ol className={s.listPages}>{pageNumberElements}</ol>
             <ol className={s.users}>{userElements}</ol>
-        </div>
+        </>
     );
 };
 

@@ -13,7 +13,4 @@
 
 .app-wrapper-content {
   grid-area: content;
-  background-color: #fff;
-  border-radius: 15px;
-  overflow: hidden;
 }

@@ -1,5 +1,7 @@
 .postsBlock {
+    background-color: white;
     padding: 10px;
+    border-radius: 10px;
 }
 
 .addPostBlock {
@@ -15,7 +17,6 @@
     resize: none;
     border: none;
     outline: none;
-    border-radius: 3px;
     background-color: #416aba;
     color: white;
     border-radius: 10px;

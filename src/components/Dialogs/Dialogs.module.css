@@ -1,6 +1,9 @@
 .dialogs {
     display: grid;
     grid-template-columns: 2fr 10fr;
+    background-color: #fff;
+    border-radius: 15px;
+    overflow: hidden;
 }
 
 .dialogsItems {

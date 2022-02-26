@@ -1,5 +1,9 @@
 .item {
-  color: greenyellow;
+  color: black;
+}
+
+.item:not(:last-of-type) {
+  margin-bottom: 10px;
 }
 
 .item img {
