@@ -1,4 +1,8 @@
 .header {
+  padding: 10px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
   height: 60px;
   grid-area: header;
   background-color: #fff;
@@ -6,4 +10,10 @@
 
 .header img {
   width: 30px;
+}
+
+.loginLink {
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
 }
