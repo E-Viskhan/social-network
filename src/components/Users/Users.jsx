@@ -7,7 +7,7 @@ const Users = (props) => {
         return <User key={user.id} user={user} toggleFollow={props.toggleFollow}/>
     });
 
-    const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+    const pagesCount = Math.ceil(props.totalUsersCount / props.count);
     const pages = [];
 
     for (let i = 1; i <= pagesCount; i++) {
@@ -22,7 +22,7 @@ const Users = (props) => {
             <li
                 key={p}
                 onClick={() => props.onPageChanged(p)}
-                className={props.currentPage === p ? s.pageNumber + ' ' + s.selectedPage : s.pageNumber}
+                className={props.page === p ? s.pageNumber + ' ' + s.selectedPage : s.pageNumber}
             >{p}</li>
         );
     });
