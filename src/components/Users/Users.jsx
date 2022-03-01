@@ -4,7 +4,10 @@ import Preloader from "../common/Preloader/Preloader";
 
 const Users = (props) => {
     const userElements = props.users.map(user => {
-        return <User key={user.id} user={user} toggleFollow={props.toggleFollow}/>
+        return <User key={user.id} user={user} toggleFollow={props.toggleFollow}
+                     followingInProgress={props.followingInProgress}
+                     toggleFollowingProgress={props.toggleFollowingProgress}
+        />
     });
 
     const pagesCount = Math.ceil(props.totalUsersCount / props.count);

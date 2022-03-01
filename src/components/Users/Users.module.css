@@ -61,6 +61,10 @@
     line-height: 18px;
 }
 
+.followBtn:disabled {
+    pointer-events: none;
+}
+
 .follow {
     background-color: #53D690;
 }
