@@ -35,4 +35,8 @@ const profileApi = {
     getProfile: userId => api.get('profile/' + userId)
 };
 
-export { usersApi, profileApi };
+const authApi = {
+    getAuth: () => api.get('auth/me')
+};
+
+export { usersApi, profileApi, authApi };

@@ -2,17 +2,11 @@ import s from './Users.module.css'
 import {UserMinus, UserPlus} from "react-feather";
 import userPhoto from '../../assets/images/user.png';
 import {NavLink} from "react-router-dom";
-import {usersApi} from "../../api/api";
 
 const User = (props) => {
-    const {user, toggleFollow, followingInProgress, toggleFollowingProgress} = props;
+    const { user, followingInProgress, toggleFollow } = props;
 
-    const onFollowBtn = async () => {
-        toggleFollowingProgress(true, user.id);
-        let data = user.followed ? await usersApi.unfollow(user.id) : await usersApi.follow(user.id);
-        if (!data.resultCode) { toggleFollow(user.id); }
-        toggleFollowingProgress(false, user.id);
-    }
+    const onFollowBtn = () => toggleFollow(user.followed, user.id);
 
     return (
         <li className={s.user}>
