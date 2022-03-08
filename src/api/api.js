@@ -25,18 +25,18 @@ const responseInterceptor = (response) => response.data;
 api.interceptors.request.use(requestInterceptor);
 api.interceptors.response.use(responseInterceptor);
 
-const usersApi = {
+const usersAPI = {
     getUsers: (count = 8, page = 1) => api.get('users', {params: {count, page}}),
     follow: userId => api.post('follow/' + userId),
     unfollow: userId => api.delete('follow/' + userId)
 };
 
-const profileApi = {
+const profileAPI = {
     getProfile: userId => api.get('profile/' + userId)
 };
 
-const authApi = {
-    getAuth: () => api.get('auth/me')
+const authAPI = {
+    me: () => api.get('auth/me')
 };
 
-export { usersApi, profileApi, authApi };
+export { usersAPI, profileAPI, authAPI };

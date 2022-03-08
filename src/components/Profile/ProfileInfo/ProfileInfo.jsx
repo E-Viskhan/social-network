@@ -2,12 +2,16 @@ import s from './ProfileInfo.module.css'
 import Preloader from "../../common/Preloader/Preloader";
 import {Chrome, Facebook, GitHub, Instagram, Link2, Twitter, Youtube} from "react-feather";
 import VkIcon from '../../../assets/images/VkIcon.svg';
+import profileAvatar from '../../../assets/images/user.png';
 
 const ProfileInfo = (props) => {
     if (!props.profile) {
         // return <Preloader/>
         return <></>;
     }
+
+    const { profile } = props;
+
     const getContactsElems = (contactsObj) => {
         const getContactIcon = (contactType) => {
             const FACEBOOK = 'facebook';
@@ -56,13 +60,13 @@ const ProfileInfo = (props) => {
     return (
         <div className={s.container}>
             <div className={s.userCard}>
-                <img className={s.avatar} src={props.profile.photos.large} alt="Avatar"/>
-                <ul className={s.contacts}>{getContactsElems(props.profile.contacts)}</ul>
+                <img className={s.avatar} src={profile.photos.large ? profile.photos.large : profileAvatar} alt="Avatar"/>
+                <ul className={s.contacts}>{getContactsElems(profile.contacts)}</ul>
             </div>
             <div className={s.userInfo}>
-                <h3 className={s.userName}>{props.profile.fullName}</h3>
-                <span className={s.lookingForAJob}>В поисках работы? - {props.profile.lookingForAJob ? 'Да' : 'Нет'}</span>
-                {props.profile.lookingForAJobDescription ? <span>Описание работы: {props.profile.lookingForAJobDescription}</span> : null}
+                <h3 className={s.userName}>{profile.fullName}</h3>
+                <span className={s.lookingForAJob}>В поисках работы? - {profile.lookingForAJob ? 'Да' : 'Нет'}</span>
+                {profile.lookingForAJobDescription ? <span>Описание работы: {profile.lookingForAJobDescription}</span> : null}
             </div>
         </div>
     );
