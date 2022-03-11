@@ -26,13 +26,15 @@ api.interceptors.request.use(requestInterceptor);
 api.interceptors.response.use(responseInterceptor);
 
 const usersAPI = {
-    getUsers: (count = 8, page = 1) => api.get('users', {params: {count, page}}),
+    getUsers: (count = 8, page = 1) => api.get('users', {params: { count, page }}),
     follow: userId => api.post('follow/' + userId),
     unfollow: userId => api.delete('follow/' + userId)
 };
 
 const profileAPI = {
-    getProfile: userId => api.get('profile/' + userId)
+    getProfile: userId => api.get('profile/' + userId),
+    getStatus: userId => api.get('profile/status/' + userId),
+    updateStatus: status => api.put('profile/status/', { status })
 };
 
 const authAPI = {

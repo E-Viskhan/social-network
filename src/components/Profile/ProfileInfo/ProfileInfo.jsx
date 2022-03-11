@@ -66,7 +66,10 @@ const ProfileInfo = (props) => {
             </div>
             <div className={s.userInfo}>
                 <h3 className={s.userName}>{profile.fullName}</h3>
-                <ProfileStatus status='Hello, My Friends!'/>
+                <ProfileStatus
+                    status={props.status}
+                    updateUserStatus={props.updateUserStatus}
+                />
                 <span className={s.lookingForAJob}>В поисках работы? - {profile.lookingForAJob ? 'Да' : 'Нет'}</span>
                 {profile.lookingForAJobDescription ? <span>Описание работы: {profile.lookingForAJobDescription}</span> : null}
             </div>

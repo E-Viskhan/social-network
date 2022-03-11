@@ -47,3 +47,7 @@
 .lookingForAJob {
     display: block
 }
+
+.statusText {
+    cursor: pointer;
+}
