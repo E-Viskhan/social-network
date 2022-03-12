@@ -23,7 +23,7 @@ const Dialogs = (props) => {
             <ul className={s.dialogsItems}>{dialogsElements}</ul>
             <div className={s.messagesBlock}>
                 <ul className={s.messages}>{messagesElements}</ul>
-                <form onSubmit={onAddMessage}>
+                <form className={s.form} onSubmit={onAddMessage}>
                     <input type="text"
                            placeholder='Start typing...'
                            value={props.dialogsPage.newMessageText}

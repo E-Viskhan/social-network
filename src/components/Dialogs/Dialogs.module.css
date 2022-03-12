@@ -72,14 +72,14 @@
     color: #fff;
 }
 
-form {
+.form {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
 }
 
-form input {
+.form input {
     width: calc(100% - 50px);
     padding: 10px 15px;
     border: 0;
@@ -92,7 +92,7 @@ form input {
     outline: none;
 }
 
-form button {
+.form button {
     width: 40px;
     height: 40px;
     color: white;
