@@ -15,7 +15,7 @@ const Users = (props) => {
 
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i);
-        if (i > 9) {
+        if (i > 14) {
             break;
         }
     }

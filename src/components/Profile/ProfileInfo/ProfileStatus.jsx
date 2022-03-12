@@ -16,11 +16,17 @@ export default class ProfileStatus extends React.Component {
         this.setState({ status: e.target.value });
     };
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.status !== this.props.status) {
+            this.setState({ status: this.props.status });
+        }
+    }
+
     render() {
         return (
             <>
                 {this.state.editMode
-                    ? <input type="text" autoFocus value={this.state.status || 'Status...'}
+                    ? <input type="text" autoFocus value={this.state.status}
                              onBlur={this.deactivateEditMode} onChange={this.onStatusChange}/>
                     : <span className={s.statusText} onClick={this.activateEditMode}>{this.props.status}</span>
                 }
