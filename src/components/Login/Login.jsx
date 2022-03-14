@@ -3,6 +3,7 @@ import {Formik, Form, Field, ErrorMessage} from 'formik';
 import {connect} from "react-redux";
 import {login} from "../../redux/auth-reducer";
 import {object, string} from 'yup';
+import TextError from "./TextError";
 
 const LoginForm = props => {
     const initialValues = {email: '', password: '', rememberMe: false};
@@ -19,14 +20,17 @@ const LoginForm = props => {
     return (
         <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
             <Form className={s.form}>
-                <ErrorMessage name='email'/>
+                <ErrorMessage name='email' component={TextError}/>
                 <Field name='email' type="text" placeholder="Email" required/>
-                <ErrorMessage name='password'/>
+
+                <ErrorMessage name='password' component={TextError}/>
                 <Field name='password' type="text" placeholder="Password" required/>
+
                 <div className={s.rememberContainer}>
                     <Field name='rememberMe' type="checkbox" id="rememberMe" className={s.rememberCheckbox}/>
                     <label htmlFor="rememberMe" className={s.rememberText}>remember me</label>
                 </div>
+
                 <button type='submit' className={s.submitBtn}>Login</button>
             </Form>
         </Formik>

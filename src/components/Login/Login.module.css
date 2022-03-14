@@ -6,6 +6,10 @@
 
 .form input[type=text] {
     margin-bottom: 10px;
+    padding: 5px 10px;
+    border: 1px solid #5e5858;
+    outline: none;
+    border-radius: 3px;
 }
 
 .rememberCheckbox,
