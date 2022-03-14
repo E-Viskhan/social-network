@@ -2,6 +2,7 @@ import s from './Login.module.css';
 import {Formik, Form, Field,} from 'formik';
 import {connect} from "react-redux";
 import {login} from "../../redux/auth-reducer";
+import {object, string} from 'yup';
 
 const LoginForm = props => {
     const initialValues = {email: '', password: '', rememberMe: false};
@@ -10,26 +11,13 @@ const LoginForm = props => {
 
     };
 
-    const validate = values => {
-        const emailRegExp = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-
-        let errors = {};
-
-        if (!values.email) {
-            errors.email = 'Email is required';
-        } else if (!emailRegExp.test(values.email)) {
-            errors.email = 'Invalid email format';
-        }
-
-        if (!values.password) {
-            errors.password = 'Password is required';
-        }
-
-        return errors;
-    };
+    const validationSchema = object({
+        email: string().required('This field is required').email('Invalid email format'),
+        password: string().required('This field is required')
+    });
 
     return (
-        <Formik initialValues={initialValues} onSubmit={onSubmit} validate={validate}>
+        <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
             {({ errors, touched }) => (
                 <Form className={s.form}>
                     {touched.email && errors.email ? <span className={s.error}>{errors.email}</span> : null}
