@@ -31,12 +31,10 @@ export const getAuthUserData = () => {
 };
 
 export const login = (email, password, rememberMe) => {
-    debugger;
     return (dispatch) => {
         authAPI.login(email, password, rememberMe).then(data => {
-            debugger;
             const { userId } = data.data;
-            // dispatch(setAuthUserData(userId, login, email));
+            dispatch(setAuthUserData(userId, login, email));
         })
     }
 }

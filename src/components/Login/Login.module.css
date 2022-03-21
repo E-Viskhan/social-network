@@ -4,7 +4,7 @@
     align-items: flex-start;
 }
 
-.form input[type=text] {
+.email, .password {
     margin-bottom: 10px;
     padding: 5px 10px;
     border: 1px solid #5e5858;
@@ -14,7 +14,7 @@
 
 .rememberCheckbox,
 .rememberText,
-.submitBtn {
+.submitBtn:not(:disabled) {
     cursor: pointer;
 }
 
