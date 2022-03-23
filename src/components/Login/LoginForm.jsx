@@ -8,11 +8,12 @@ const LoginForm = props => {
 
     const onSubmit = (values, actions) => {
         const { email, password, rememberMe } = values;
+        const { setSubmitting, setStatus, resetForm } = actions;
         const { login } = props;
 
-        login(email, password, rememberMe);
-        actions.setSubmitting(false);
-        actions.resetForm();
+        login(email, password, rememberMe, setStatus);
+        setSubmitting(false);
+        resetForm();
     };
 
     const validationSchema = object({
@@ -24,7 +25,8 @@ const LoginForm = props => {
 
     return (
         <Formik {...formikProps}>
-            {({ isSubmitting,  isValid }) => (
+            {({ isSubmitting,  isValid , status}) => {
+                return (
                 <Form className={s.form}>
                     <ErrorMessage name='email' component={TextError}/>
                     <Field name='email' type="text" placeholder="Email" className={s.email}/>
@@ -37,9 +39,11 @@ const LoginForm = props => {
                         <label htmlFor="rememberMe" className={s.rememberText}>remember me</label>
                     </div>
 
+                    { status ? status.serverErrors.map((error, index) => <p key={index}>{error}</p>) : null}
+
                     <button type='submit' className={s.submitBtn} disabled={!isValid || isSubmitting}>Login</button>
                 </Form>
-            )}
+            )}}
         </Formik>
     )
 };
