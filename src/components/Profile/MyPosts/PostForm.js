@@ -1,6 +1,5 @@
-import {Form, Formik, Field, ErrorMessage} from "formik";
-import  {object, string} from "yup";
-import TextError from "../../Login/TextError";
+import {Field, Form, Formik} from "formik";
+import {object, string} from "yup";
 
 const PostForm = props => {
     const { addPost } = props;
@@ -8,7 +7,7 @@ const PostForm = props => {
     const initialValues = { postText: '' };
 
     const validationSchema = object({
-        postText: string().required('Please enter your message').min(2, 'Your text of post is too short')
+        postText: string()
     });
 
     const onSubmit = (values, actions) => {
@@ -26,7 +25,6 @@ const PostForm = props => {
             {({isSubmitting, isValid, dirty}) => (
                 <Form>
                     <Field type='text' name='postText'/>
-                    <ErrorMessage name='postText' component={TextError}/>
                     <button type='submit' disabled={!dirty || !isValid || isSubmitting}>Add post</button>
                 </Form>
             )}
