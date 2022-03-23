@@ -25,21 +25,19 @@ const setAuthUserData = (userId, login, email) => ({type: SET_USER_DATA, payload
 const deleteAuthUserData = () => ({type: DELETE_USER_DATA})
 
 
-export const getAuthUserData = () => {
-    return (dispatch) => {
-        authAPI.me().then(data => {
-                if (!data.resultCode) {
-                    const {id, login, email} = data.data;
-                    dispatch(setAuthUserData(id, login, email));
-                }
-            });
-    };
+export const getAuthUserData = () => (dispatch) => {
+    return authAPI.me().then(data => {
+        if (!data.resultCode) {
+            const {id, login, email} = data.data;
+            dispatch(setAuthUserData(id, login, email));
+        }
+    });
 };
 
 export const login = (email, password, rememberMe, setStatus) => {
     return (dispatch) => {
         authAPI.login(email, password, rememberMe).then(data => {
-            const { resultCode, messages } = data;
+            const {resultCode, messages} = data;
 
             if (!resultCode) {
                 dispatch(getAuthUserData())
@@ -60,7 +58,6 @@ export const logout = () => {
         });
     }
 }
-
 
 
 export default authReducer;
