@@ -39,7 +39,8 @@ const profileAPI = {
 
 const authAPI = {
     me: () => api.get('auth/me'),
-    login: (email, password, rememberMe) => api.post('auth/login', {email, password, rememberMe})
+    login: (email, password, rememberMe) => api.post('auth/login', {email, password, rememberMe}),
+    logout: () => api.delete('auth/login')
 };
 
 export { usersAPI, profileAPI, authAPI };

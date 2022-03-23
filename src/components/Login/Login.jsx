@@ -1,59 +1,18 @@
-import s from './Login.module.css';
-import {ErrorMessage, Field, Form, Formik} from 'formik';
 import {connect} from "react-redux";
 import {login} from "../../redux/auth-reducer";
-import {object, string} from 'yup';
-import TextError from "./TextError";
+import {Navigate} from "react-router-dom";
+import LoginForm from "./LoginForm";
 
-const LoginForm = props => {
-    const initialValues = { email: '', password: '', rememberMe: false };
-
-    const onSubmit = (values, actions) => {
-        const { email, password, rememberMe } = values;
-        const { login } = props;
-
-        login(email, password, rememberMe);
-        actions.setSubmitting(false);
-        actions.resetForm();
-
-    };
-
-    const validationSchema = object({
-        email: string().required('This field is required').email('Invalid email format'),
-        password: string().required('This field is required')
-    });
-
-    const formikProps = { initialValues, validationSchema, onSubmit };
+const Login = props => {
+    if (props.isAuth) return <Navigate to='/profile'/>
 
     return (
-        <Formik {...formikProps}>
-            {({ isSubmitting,  isValid }) => (
-                <Form className={s.form}>
-                    <ErrorMessage name='email' component={TextError}/>
-                    <Field name='email' type="text" placeholder="Email" className={s.email}/>
-
-                    <ErrorMessage name='password' component={TextError}/>
-                    <Field name='password' type="password" placeholder="Password" className={s.password}/>
-
-                    <div className={s.rememberContainer}>
-                        <Field name='rememberMe' type="checkbox" id="rememberMe" className={s.rememberCheckbox}/>
-                        <label htmlFor="rememberMe" className={s.rememberText}>remember me</label>
-                    </div>
-
-                    <button type='submit' className={s.submitBtn} disabled={!isValid || isSubmitting}>Login</button>
-                </Form>
-            )}
-        </Formik>
-    )
-};
-
-const Login = props => (
     <>
         <h1>Login</h1>
         <LoginForm login={props.login}/>
     </>
-);
+)};
 
-const mapStateToProps = () => ({});
+const mapStateToProps = state => ({ isAuth: state.auth.isAuth });
 
-export default connect(mapStateToProps, {login})(Login);
+export default connect(mapStateToProps, { login })(Login);
