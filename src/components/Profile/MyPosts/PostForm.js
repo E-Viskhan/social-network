@@ -12,7 +12,6 @@ const PostForm = props => {
 
     const onSubmit = (values, actions) => {
         const { postText } = values;
-        debugger;
         addPost(postText)
         actions.setSubmitting(false);
         actions.resetForm();
