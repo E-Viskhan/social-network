@@ -9,6 +9,7 @@ import {
     toggleFollowingProgress,
     toggleIsFetching
 } from "../../redux/users-reducer";
+import * as usersSelector from './../../redux/users-selector'
 import React from "react";
 
 class UsersContainer extends React.Component {
@@ -33,7 +34,14 @@ class UsersContainer extends React.Component {
     }
 }
 
-const mapStateToProps = state => ({...state.usersPage});
+const mapStateToProps = state => ({
+    users: usersSelector.getUsers(state),
+    count: usersSelector.getPageSize(state),
+    page: usersSelector.getCurrentPage(state),
+    totalUsersCount: usersSelector.getTotalUsersCount(state),
+    isFetching: usersSelector.getIsFetching(state),
+    followingInProgress: usersSelector.getFollowingInProgress(state)
+});
 
 export default connect(mapStateToProps,
     {
