@@ -1,39 +1,19 @@
 import User from './User';
 import s from './Users.module.css';
-import Preloader from "../common/Preloader/Preloader";
+import Pagination from "../common/Pagination/Pagination";
 
-const Users = (props) => {
-    const userElements = props.users.map(user => {
-        return <User key={user.id} user={user} toggleFollow={props.toggleFollow}
-                     followingInProgress={props.followingInProgress}
-                     toggleFollowingProgress={props.toggleFollowingProgress}
-        />
+const Users = ({ page, count, totalUsersCount, users, followingInProgress, onPageChanged, toggleFollow }) => {
+    const userElements = users.map(user => {
+        const userProps = { user, toggleFollow, followingInProgress };
+
+        return <User key={user.id} {...userProps}/>
     });
 
-    const pagesCount = Math.ceil(props.totalUsersCount / props.count);
-    const pages = [];
-
-    for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i);
-        if (i > 14) {
-            break;
-        }
-    }
-
-    const pageNumberElements = pages.map(p => {
-        return (
-            <li
-                key={p}
-                onClick={() => props.onPageChanged(p)}
-                className={props.page === p ? s.pageNumber + ' ' + s.selectedPage : s.pageNumber}
-            >{p}</li>
-        );
-    });
+    const paginationProps = { page, count, totalUsersCount, onPageChanged };
 
     return (
         <>
-            {/*{props.isFetching ? <Preloader/> : null}*/}
-            <ol className={s.listPages}>{pageNumberElements}</ol>
+            <Pagination {...paginationProps}/>
             <ol className={s.users}>{userElements}</ol>
         </>
     );

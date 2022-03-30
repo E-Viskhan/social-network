@@ -1,27 +1,25 @@
-import {getAuthUserData} from "./auth-reducer";
+import { getAuthUserData } from "./auth-reducer";
 
-const INITIALIZED_SUCCESSFULLY = 'INITIALIZED_SUCCESSFULLY';
+const INITIALIZED_SUCCESSFULLY = 'social-network/app/INITIALIZED_SUCCESSFULLY';
 
-const initialState = {
-    initialized: false
-};
+const initialState = { initialized: false };
 
 const appReducer = (state = initialState, action) => {
     switch (action.type) {
         case INITIALIZED_SUCCESSFULLY:
-            return {...state, initialized: true};
+            return { ...state, initialized: true };
         default:
             return state;
     }
 };
 
-const initializedSuccessfully = () => ({type: INITIALIZED_SUCCESSFULLY});
+const initializedSuccessfully = () => ({ type: INITIALIZED_SUCCESSFULLY });
 
-export const initializeApp = () => (dispatch) => {
-    Promise.all([dispatch(getAuthUserData())])
-        .then(() => {
-            dispatch(initializedSuccessfully());
-        })
+export const initializeApp = () => async dispatch => {
+    await Promise.all([
+        dispatch(getAuthUserData())
+    ]);
+    dispatch(initializedSuccessfully());
 };
 
 export default appReducer;

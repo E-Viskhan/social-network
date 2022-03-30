@@ -1,5 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import s from './ProfileInfo.module.css';
+import { connect } from "react-redux";
+import { updateUserStatus } from "../../../redux/profile-reducer";
 
 const ProfileStatus = props => {
     const [editMode, setEditMode] = useState(false);
@@ -27,4 +29,6 @@ const ProfileStatus = props => {
     );
 };
 
-export default ProfileStatus;
+const mapStateToProps = state => ({ status: state.profilePage.status });
+
+export default connect(mapStateToProps, { updateUserStatus })(ProfileStatus);

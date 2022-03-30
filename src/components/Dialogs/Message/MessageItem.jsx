@@ -1,6 +1,6 @@
 import s from './../Dialogs.module.css';
 
-const Message = props => {
+const MessageItem = props => {
     return (
         <li className={`${s.message} ${props.message.isMyMessage ? s.outgoingMess : s.incomingMess}`}>
             {props.message.message}
@@ -8,4 +8,4 @@ const Message = props => {
     );
 };
 
-export default Message;
+export default MessageItem;

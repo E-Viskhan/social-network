@@ -3,8 +3,11 @@ import {object, string} from "yup";
 import {ArrowRight} from "react-feather";
 import React from "react";
 import s from './MessageForm.module.css';
+import { useDispatch } from "react-redux";
+import { addMessage } from "../../redux/dialogs-reducer";
 
 const MessageForm = props => {
+    const dispatch = useDispatch();
     const initialValues = {messageText: ''};
 
     const validationSchema = object({
@@ -13,9 +16,8 @@ const MessageForm = props => {
 
     const onSubmit = (values, actions) => {
         const { messageText } = values;
-        const { addMessage } = props;
 
-        addMessage(messageText);
+        dispatch(addMessage(messageText));
         actions.setSubmitting(false);
         actions.resetForm();
     };
@@ -26,7 +28,7 @@ const MessageForm = props => {
         <Formik {...formikProps}>
             {({ isSubmitting, isValid, dirty }) => (
                 <Form className={s.form}>
-                    <Field type='text' name='messageText' placeholder='Start typing...'/>
+                    <Field type='text' name='messageText' placeholder='Start typing...' autoFocus/>
                     <button type='submit' disabled={!dirty || isSubmitting || !isValid}><ArrowRight/></button>
                 </Form>
             )}

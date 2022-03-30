@@ -1,7 +1,7 @@
 import s from './Users.module.css'
-import {UserMinus, UserPlus} from "react-feather";
+import { UserMinus, UserPlus } from "react-feather";
 import userPhoto from '../../assets/images/user.png';
-import {NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const User = (props) => {
     const { user, followingInProgress, toggleFollow } = props;
@@ -15,7 +15,8 @@ const User = (props) => {
             </NavLink>
             <h3 className={s.name}>{user.name}</h3>
             <span className={s.status}>{user.status}</span>
-            <button disabled={followingInProgress.some(id => id === user.id)} onClick={onFollowBtn} className={`${s.followBtn} ${user.followed ? s.unfollow : s.follow}`}>
+            <button disabled={followingInProgress.some(id => id === user.id)} onClick={onFollowBtn}
+                    className={`${s.followBtn} ${user.followed ? s.unfollow : s.follow}`}>
                 {user.followed ? <UserMinus/> : <UserPlus/>}
                 <span>{user.followed ? 'Unfollow' : 'Follow'}</span>
             </button>

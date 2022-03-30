@@ -1,14 +1,6 @@
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 import Users from "./Users";
-import {
-    getUsers,
-    setPage,
-    setTotalUsersCount,
-    setUsers,
-    toggleFollow,
-    toggleFollowingProgress,
-    toggleIsFetching
-} from "../../redux/users-reducer";
+import { getUsers, toggleFollow } from "../../redux/users-reducer";
 import * as usersSelector from './../../redux/users-selector'
 import React from "react";
 
@@ -43,7 +35,4 @@ const mapStateToProps = state => ({
     followingInProgress: usersSelector.getFollowingInProgress(state)
 });
 
-export default connect(mapStateToProps,
-    {
-        toggleFollow, setUsers, setPage, setTotalUsersCount,
-        toggleIsFetching, toggleFollowingProgress, getUsers})(UsersContainer);
+export default connect(mapStateToProps,{ toggleFollow, getUsers })(UsersContainer);

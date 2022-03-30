@@ -1,7 +1,7 @@
-import {createSelector} from "reselect";
+import { createSelector } from "reselect";
 
 export const getUsers = state => state.usersPage.users;
-export const getUsersCleverSelector = createSelector(getUsers, (users) => {
+export const getUsersCleverSelector = createSelector(getUsers, users => {
     return users.filter(u => true);
 });
 export const getPageSize = state => state.usersPage.count;

@@ -1,17 +1,16 @@
-import {object, string} from "yup";
-import {ErrorMessage, Field, Form, Formik} from "formik";
+import { object, string } from "yup";
+import { ErrorMessage, Field, Form, Formik } from "formik";
 import s from "./Login.module.css";
 import TextError from "./TextError";
+import { useDispatch } from "react-redux";
+import { login } from "../../redux/auth-reducer";
 
 const LoginForm = props => {
+    const dispatch = useDispatch()
     const initialValues = { email: '', password: '', rememberMe: false };
 
-    const onSubmit = (values, actions) => {
-        const { email, password, rememberMe } = values;
-        const { setSubmitting, setStatus, resetForm } = actions;
-        const { login } = props;
-
-        login(email, password, rememberMe, setStatus);
+    const onSubmit = ({ email, password, rememberMe }, { setSubmitting, setStatus, resetForm }) => {
+        dispatch(login(email, password, rememberMe, setStatus));
         setSubmitting(false);
         resetForm();
     };
@@ -25,25 +24,26 @@ const LoginForm = props => {
 
     return (
         <Formik {...formikProps}>
-            {({ isSubmitting,  isValid , status}) => {
+            {({ isSubmitting, isValid, status }) => {
                 return (
-                <Form className={s.form}>
-                    <ErrorMessage name='email' component={TextError}/>
-                    <Field name='email' type="text" placeholder="Email" className={s.email}/>
+                    <Form className={s.form}>
+                        <ErrorMessage name='email' component={TextError}/>
+                        <Field name='email' type="text" placeholder="Email" className={s.email}/>
 
-                    <ErrorMessage name='password' component={TextError}/>
-                    <Field name='password' type="password" placeholder="Password" className={s.password}/>
+                        <ErrorMessage name='password' component={TextError}/>
+                        <Field name='password' type="password" placeholder="Password" className={s.password}/>
 
-                    <div className={s.rememberContainer}>
-                        <Field name='rememberMe' type="checkbox" id="rememberMe" className={s.rememberCheckbox}/>
-                        <label htmlFor="rememberMe" className={s.rememberText}>remember me</label>
-                    </div>
+                        <div className={s.rememberContainer}>
+                            <Field name='rememberMe' type="checkbox" id="rememberMe" className={s.rememberCheckbox}/>
+                            <label htmlFor="rememberMe" className={s.rememberText}>remember me</label>
+                        </div>
 
-                    { status ? status.serverErrors.map((error, index) => <p key={index}>{error}</p>) : null}
+                        {status ? status.serverErrors.map((error, index) => <p key={index}>{error}</p>) : null}
 
-                    <button type='submit' className={s.submitBtn} disabled={!isValid || isSubmitting}>Login</button>
-                </Form>
-            )}}
+                        <button type='submit' className={s.submitBtn} disabled={!isValid || isSubmitting}>Login</button>
+                    </Form>
+                )
+            }}
         </Formik>
     )
 };

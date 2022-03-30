@@ -1,17 +1,16 @@
 import s from './ProfileInfo.module.css'
-import Preloader from "../../common/Preloader/Preloader";
-import {Chrome, Facebook, GitHub, Instagram, Link2, Twitter, Youtube} from "react-feather";
+import { Chrome, Facebook, GitHub, Instagram, Link2, Twitter, Youtube } from "react-feather";
 import VkIcon from '../../../assets/images/VkIcon.svg';
 import profileAvatar from '../../../assets/images/user.png';
 import ProfileStatus from "./ProfileStatus";
+import { useSelector } from "react-redux";
 
-const ProfileInfo = (props) => {
-    if (!props.profile) {
-        // return <Preloader/>
-        return <></>;
-    }
+const ProfileInfo = props => {
+    const profile = useSelector(state => state.profilePage.profile);
 
-    const { profile } = props;
+    if (!profile) return <></>;
+
+    const { photos, contacts, fullName, lookingForAJob, lookingForAJobDescription } = profile;
 
     const getContactsElems = (contactsObj) => {
         const getContactIcon = (contactType) => {
@@ -46,7 +45,9 @@ const ProfileInfo = (props) => {
         const contactsElems = [];
 
         for (let contact in contactsObj) {
-            if (!contactsObj[contact]) {continue;}
+            if (!contactsObj[contact]) {
+                continue;
+            }
             const contactElem =
                 <li key={contact} className={s.contact}>
                     {getContactIcon(contact)}
@@ -61,17 +62,14 @@ const ProfileInfo = (props) => {
     return (
         <div className={s.container}>
             <div className={s.userCard}>
-                <img className={s.avatar} src={profile.photos.large ? profile.photos.large : profileAvatar} alt="Avatar"/>
-                <ul className={s.contacts}>{getContactsElems(profile.contacts)}</ul>
+                <img className={s.avatar} src={photos.large ? photos.large : profileAvatar} alt="Avatar"/>
+                <ul className={s.contacts}>{getContactsElems(contacts)}</ul>
             </div>
             <div className={s.userInfo}>
-                <h3 className={s.userName}>{profile.fullName}</h3>
-                <ProfileStatus
-                    status={props.status}
-                    updateUserStatus={props.updateUserStatus}
-                />
-                <span className={s.lookingForAJob}>В поисках работы? - {profile.lookingForAJob ? 'Да' : 'Нет'}</span>
-                {profile.lookingForAJobDescription ? <span>Описание работы: {profile.lookingForAJobDescription}</span> : null}
+                <h3 className={s.userName}>{fullName}</h3>
+                <ProfileStatus/>
+                <span className={s.lookingForAJob}>В поисках работы? - {lookingForAJob ? 'Да' : 'Нет'}</span>
+                {lookingForAJobDescription ? <span>Описание работы: {lookingForAJobDescription}</span> : null}
             </div>
         </div>
     );

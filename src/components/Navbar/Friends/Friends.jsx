@@ -1,8 +1,10 @@
 import s from './Friends.module.css'
 import FriendItem from "./FriendItem/FriendItem";
+import { useSelector } from "react-redux";
 
-const Friends = (props) => {
-    const friendsElements = props.friends.map(friend => <FriendItem key={friend.id} friend={friend}/>)
+const Friends = props => {
+    const friends = useSelector(state => state.navbar.friends);
+    const friendsElements = friends.map(friend => <FriendItem key={friend.id} friend={friend}/>)
 
     return (
         <div className={s.friends}>

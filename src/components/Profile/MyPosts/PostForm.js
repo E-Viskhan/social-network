@@ -1,9 +1,10 @@
-import {Field, Form, Formik} from "formik";
-import {object, string} from "yup";
+import { Field, Form, Formik } from "formik";
+import { object, string } from "yup";
+import { useDispatch } from "react-redux";
+import { addPost } from "../../../redux/profile-reducer";
 
 const PostForm = props => {
-    const { addPost } = props;
-
+    const dispatch = useDispatch();
     const initialValues = { postText: '' };
 
     const validationSchema = object({
@@ -12,16 +13,16 @@ const PostForm = props => {
 
     const onSubmit = (values, actions) => {
         const { postText } = values;
-        addPost(postText)
+        dispatch(addPost(postText));
         actions.setSubmitting(false);
         actions.resetForm();
     };
 
-    const formikProps = {initialValues, validationSchema, onSubmit};
+    const formikProps = { initialValues, validationSchema, onSubmit };
 
     return (
         <Formik {...formikProps}>
-            {({isSubmitting, isValid, dirty}) => (
+            {({ isSubmitting, isValid, dirty }) => (
                 <Form>
                     <Field type='text' name='postText'/>
                     <button type='submit' disabled={!dirty || !isValid || isSubmitting}>Add post</button>

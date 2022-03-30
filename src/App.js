@@ -2,52 +2,47 @@ import './App.css';
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import NavbarContainer from "./components/Navbar/NavbarContainer";
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import Navbar from "./components/Navbar/Navbar";
 import UsersContainer from "./components/Users/UsersContainer";
-import ProfileContainer from "./components/Profile/ProfileContainer";
-import HeaderContainer from "./components/Header/HeaderContainer";
+import Header from "./components/Header/Header";
 import Login from "./components/Login/Login";
-import {Route, Routes} from "react-router-dom";
-import {Component} from "react";
-import {connect} from "react-redux";
-import {initializeApp} from "./redux/app-reducer";
+import Dialogs from "./components/Dialogs/Dialogs";
+import { Route, Routes } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { initializeApp } from "./redux/app-reducer";
+import { useEffect } from "react";
+import Profile from "./components/Profile/Profile";
 
-class App extends Component {
-    componentDidMount() {
-        this.props.initializeApp();
-    }
+const App = props => {
+    const initialized = useSelector(state => state.app.initialized);
+    const dispatch = useDispatch();
 
-    render() {
-        if (!this.props.initialized) {
-            return <></>;
-        }
+    useEffect(() => {
+        dispatch(initializeApp());
+    }, []);
 
-        return (
-            <div className='app-wrapper'>
-                <HeaderContainer/>
-                <NavbarContainer/>
-                <div className='app-wrapper-content'>
-                    <Routes>
-                        <Route path='/profile'>
-                            <Route path='' element={<ProfileContainer/>}/>
-                            <Route path=':userId' element={<ProfileContainer/>}/>
-                        </Route>
-                        <Route path='/dialogs/*' element={<DialogsContainer/>}/>
-                        <Route path='/news' element={<News/>}/>
-                        <Route path='/users' element={<UsersContainer/>}/>
-                        <Route path='/music' element={<Music/>}/>
-                        <Route path='/settings' element={<Settings/>}/>
-                        <Route path='/login' element={<Login/>}/>
-                    </Routes>
-                </div>
+    if (!initialized) return <></>;
+
+    return (
+        <div className='app-wrapper'>
+            <Header/>
+            <Navbar/>
+            <div className='app-wrapper-content'>
+                <Routes>
+                    <Route path='/profile'>
+                        <Route path='' element={<Profile/>}/>
+                        <Route path=':userId' element={<Profile/>}/>
+                    </Route>
+                    <Route path='/dialogs/*' element={<Dialogs/>}/>
+                    <Route path='/news' element={<News/>}/>
+                    <Route path='/users' element={<UsersContainer/>}/>
+                    <Route path='/music' element={<Music/>}/>
+                    <Route path='/settings' element={<Settings/>}/>
+                    <Route path='/login' element={<Login/>}/>
+                </Routes>
             </div>
-        );
-    }
-}
+        </div>
+    );
+};
 
-const mapStateToProps = state => ({
-   initialized: state.app.initialized
-});
-
-export default connect(mapStateToProps, {initializeApp})(App);
+export default App;
