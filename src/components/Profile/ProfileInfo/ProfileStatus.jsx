@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import s from './ProfileInfo.module.css';
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateUserStatus } from "../../../redux/profile-reducer";
 
 const ProfileStatus = props => {
+    const dispatch = useDispatch();
+    const globalStatus = useSelector(state => state.profilePage.status);
     const [editMode, setEditMode] = useState(false);
-    const [status, setStatus] = useState(props.status);
+    const [status, setStatus] = useState(globalStatus);
 
     useEffect(() => {
-        setStatus(props.status);
-    }, [props.status]);
+        setStatus(globalStatus);
+    }, [globalStatus]);
 
     const activateEditMode = () => setEditMode(true);
     const deactivateEditMode = () => {
         setEditMode(false);
-        props.updateUserStatus(status);
+        dispatch(updateUserStatus(status));
     };
     const onStatusChange = e => setStatus(e.target.value);
 
@@ -23,12 +25,10 @@ const ProfileStatus = props => {
             {editMode
                 ? <input type="text" autoFocus value={status}
                          onChange={onStatusChange} onBlur={deactivateEditMode}/>
-                : <span className={s.statusText} onClick={activateEditMode}>{props.status}</span>
+                : <span className={s.statusText} onClick={activateEditMode}>{globalStatus}</span>
             }
         </>
     );
 };
 
-const mapStateToProps = state => ({ status: state.profilePage.status });
-
-export default connect(mapStateToProps, { updateUserStatus })(ProfileStatus);
+export default ProfileStatus;
