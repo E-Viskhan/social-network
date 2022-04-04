@@ -5,13 +5,14 @@ import Settings from "./components/Settings/Settings";
 import Navbar from "./components/Navbar/Navbar";
 import Header from "./components/Header/Header";
 import Login from "./components/Login/Login";
-import Dialogs from "./components/Dialogs/Dialogs";
-import Profile from "./components/Profile/Profile";
 import Users from "./components/Users/Users";
 import { Route, Routes } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { initializeApp } from "./redux/app-reducer";
-import { useEffect } from "react";
+import { lazy, Suspense, useEffect } from "react";
+
+const Dialogs = lazy(() => import("./components/Dialogs/Dialogs"));
+const Profile = lazy(() => import('./components/Profile/Profile'));
 
 const App = props => {
     const initialized = useSelector(state => state.app.initialized);
@@ -28,18 +29,20 @@ const App = props => {
             <Header/>
             <Navbar/>
             <div className='app-wrapper-content'>
-                <Routes>
-                    <Route path='/profile'>
-                        <Route path='' element={<Profile/>}/>
-                        <Route path=':userId' element={<Profile/>}/>
-                    </Route>
-                    <Route path='/dialogs/*' element={<Dialogs/>}/>
-                    <Route path='/news' element={<News/>}/>
-                    <Route path='/users' element={<Users/>}/>
-                    <Route path='/music' element={<Music/>}/>
-                    <Route path='/settings' element={<Settings/>}/>
-                    <Route path='/login' element={<Login/>}/>
-                </Routes>
+                <Suspense fallback={<div>Loading...</div>}>
+                    <Routes>
+                        <Route path='/profile'>
+                            <Route path='' element={<Profile/>}/>
+                            <Route path=':userId' element={<Profile/>}/>
+                        </Route>
+                        <Route path='/dialogs/*' element={<Dialogs/>}/>
+                        <Route path='/news' element={<News/>}/>
+                        <Route path='/users' element={<Users/>}/>
+                        <Route path='/music' element={<Music/>}/>
+                        <Route path='/settings' element={<Settings/>}/>
+                        <Route path='/login' element={<Login/>}/>
+                    </Routes>
+                </Suspense>
             </div>
         </div>
     );
