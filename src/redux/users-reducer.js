@@ -45,7 +45,7 @@ const usersReducer = (state = initialState, action) => {
 
 const toggleFollowSuccess = userId => ({ type: TOGGLE_FOLLOW, userId });
 const setUsers = users => ({ type: SET_USERS, users });
-const setPage = page => ({ type: SET_PAGE, page });
+export const setPage = page => ({ type: SET_PAGE, page });
 const setTotalUsersCount = count => ({ type: SET_TOTAL_USERS_COUNT, count });
 const toggleIsFetching = isFetching => ({ type: TOGGLE_IS_FETCHING, isFetching });
 const toggleFollowingProgress = (isFetching, userId) => ({ type: TOGGLE_FOLLOWING_PROGRESS, isFetching, userId });
@@ -63,7 +63,7 @@ export const getUsers = (count, page) => async dispatch => {
 };
 
 
-export const toggleFollow = (userFollowed, userId) => async (dispatch) => {
+export const toggleFollow = (userFollowed, userId) => async dispatch => {
     dispatch(toggleFollowingProgress(true, userId));
 
     const data = userFollowed ? await usersAPI.unfollow(userId) : await usersAPI.follow(userId);
