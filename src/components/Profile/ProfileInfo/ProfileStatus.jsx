@@ -9,9 +9,7 @@ const ProfileStatus = props => {
     const [editMode, setEditMode] = useState(false);
     const [status, setStatus] = useState(globalStatus);
 
-    useEffect(() => {
-        setStatus(globalStatus);
-    }, [globalStatus]);
+    useEffect(() => setStatus(globalStatus), [globalStatus]);
 
     const activateEditMode = () => setEditMode(true);
     const deactivateEditMode = () => {

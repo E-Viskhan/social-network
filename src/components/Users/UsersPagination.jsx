@@ -2,6 +2,7 @@ import { Pagination } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCountUsersOnPage, selectCurrentPage, selectTotalUsersCount } from "../../redux/users-selector";
 import { setPage } from "../../redux/users-reducer";
+import s from "./Users.module.css";
 
 const UsersPagination = props => {
     const dispatch = useDispatch();
@@ -14,7 +15,7 @@ const UsersPagination = props => {
         dispatch(setPage(page));
     };
 
-    return <Pagination count={pagesCount} page={page} onChange={handleChange}
+    return <Pagination className={s.pagination} count={pagesCount} page={page} onChange={handleChange}
                        color='primary' showFirstButton showLastButton
                        siblingCount={2} {...props}
     />;

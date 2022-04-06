@@ -13,9 +13,9 @@ const requestInterceptor = (config) => {
     const GET = 'get';
     const { method } = config;
 
-    if (method !== GET) {
-        config.headers['API-KEY'] = API_KEY;
-    }
+    // if (method !== GET) {
+    config.headers['API-KEY'] = API_KEY;
+    // }
 
     return config;
 };
@@ -26,7 +26,7 @@ api.interceptors.request.use(requestInterceptor);
 api.interceptors.response.use(responseInterceptor);
 
 const usersAPI = {
-    getUsers: (count, page) => api.get('users', {params: { count, page }}),
+    getUsers: (count, page) => api.get('users', { params: { count, page } }),
     follow: userId => api.post('follow/' + userId),
     unfollow: userId => api.delete('follow/' + userId)
 };
@@ -39,7 +39,7 @@ const profileAPI = {
 
 const authAPI = {
     me: () => api.get('auth/me'),
-    login: (email, password, rememberMe) => api.post('auth/login', {email, password, rememberMe}),
+    login: (email, password, rememberMe) => api.post('auth/login', { email, password, rememberMe }),
     logout: () => api.delete('auth/login')
 };
 

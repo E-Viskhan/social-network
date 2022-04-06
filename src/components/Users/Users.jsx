@@ -20,7 +20,7 @@ const Users = props => {
 
     return (
         <>
-            <UsersPagination className={s.pagination}/>
+            <UsersPagination />
             <ol className={s.users}>{usersElements}</ol>
         </>
     );
