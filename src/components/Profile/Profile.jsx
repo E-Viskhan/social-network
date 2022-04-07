@@ -16,7 +16,7 @@ const Profile = props => {
             dispatch(getUserProfile(userId));
             dispatch(getUserStatus(userId));
         }
-    }, []);
+    }, [userId]);
 
     if (!userId) return <Navigate to={'/login'}/>;
 
