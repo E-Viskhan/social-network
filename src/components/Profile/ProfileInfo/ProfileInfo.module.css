@@ -6,18 +6,25 @@
 }
 
 .userCard {
+    width: 230px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 15px;
     background-color: white;
     border-radius: 10px;
 }
 
 .userInfo {
+    display: flex;
+    flex-direction: column;
     padding: 15px;
     background-color: white;
     border-radius: 10px;
 }
 
 .avatar {
+    margin-bottom: 10px;
     width: 100%;
     height: 200px;
     object-fit: cover;
@@ -50,4 +57,37 @@
 
 .statusText {
     cursor: pointer;
+}
+
+.fileInput {
+    width: 100%;
+}
+
+.fileInput::-webkit-file-upload-button {
+    visibility: hidden;
+}
+
+.fileInput::before {
+    content: 'Change avatar';
+    display: inline-block;
+    box-sizing: border-box;
+    width: 200px;
+    background: linear-gradient(top, #f9f9f9, #e3e3e3);
+    border: 1px solid #999;
+    border-radius: 3px;
+    padding: 5px 8px;
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    text-shadow: 1px 1px #fff;
+    font-weight: 700;
+    font-size: 10pt;
+    text-align: center;
+}
+.fileInput:hover::before {
+    border-color: black;
+}
+.fileInput:active::before {
+    background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
 }

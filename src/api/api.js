@@ -34,7 +34,13 @@ const usersAPI = {
 const profileAPI = {
     getProfile: userId => api.get('profile/' + userId),
     getStatus: userId => api.get('profile/status/' + userId),
-    updateStatus: status => api.put('profile/status/', { status })
+    updateStatus: status => api.put('profile/status/', { status }),
+    updatePhoto: photo => {
+        const formData = new FormData();
+        formData.append('image', photo);
+
+        return api.put('profile/photo', formData);
+    }
 };
 
 const authAPI = {

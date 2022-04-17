@@ -18,3 +18,7 @@
   text-decoration: none;
   cursor: pointer;
 }
+
+.logoutBtn {
+  padding: 2px;
+}
