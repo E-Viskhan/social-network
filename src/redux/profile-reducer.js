@@ -11,7 +11,16 @@ const initialState = {
         { id: 1, postText: 'Hi, how are you?', likesCount: 14 },
         { id: 2, postText: "it's my first post", likesCount: 15 }
     ],
-    profile: null,
+    profile: {
+        userId: null,
+        lookingForAJob: null,
+        lookingForAJobDescriptions: null,
+        fullName: null,
+        photos: {
+            large: null,
+            small: null
+        }
+    },
     status: null
 };
 
