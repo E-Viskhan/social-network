@@ -1,7 +1,7 @@
 import './App.css';
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
-import Settings from "./components/Settings/Settings";
+import Settings from "./components/Settings/SettingsMain";
 import Navbar from "./components/Navbar/Navbar";
 import Header from "./components/Header/Header";
 import Login from "./components/Login/Login";
@@ -14,6 +14,29 @@ import { initializeApp } from "./redux/app-reducer";
 import { useEffect } from "react";
 
 const App = props => {
+    return (
+        <div className='app-wrapper'>
+            <Header/>
+            <Navbar/>
+            <div className='app-wrapper-content'>
+                <Routes>
+                    <Route path='profile'>
+                        <Route path='' element={<Profile/>}/>
+                        <Route path=':userId' element={<Profile/>}/>
+                    </Route>
+                    <Route path='dialogs/*' element={<Dialogs/>}/>
+                    <Route path='news' element={<News/>}/>
+                    <Route path='users' element={<Users/>}/>
+                    <Route path='music' element={<Music/>}/>
+                    <Route path='settings/*' element={<Settings/>}/>
+                    <Route path='login' element={<Login/>}/>
+                </Routes>
+            </div>
+        </div>
+    );
+};
+
+const AppMain = props => {
     const initialized = useSelector(state => state.app.initialized);
     const dispatch = useDispatch();
 
@@ -23,26 +46,7 @@ const App = props => {
 
     if (!initialized) return <></>;
 
-    return (
-        <div className='app-wrapper'>
-            <Header/>
-            <Navbar/>
-            <div className='app-wrapper-content'>
-                <Routes>
-                    <Route path='/profile'>
-                        <Route path='' element={<Profile/>}/>
-                        <Route path=':userId' element={<Profile/>}/>
-                    </Route>
-                    <Route path='/dialogs/*' element={<Dialogs/>}/>
-                    <Route path='/news' element={<News/>}/>
-                    <Route path='/users' element={<Users/>}/>
-                    <Route path='/music' element={<Music/>}/>
-                    <Route path='/settings' element={<Settings/>}/>
-                    <Route path='/login' element={<Login/>}/>
-                </Routes>
-            </div>
-        </div>
-    );
+    return <App/>;
 };
 
-export default App;
+export default AppMain;
