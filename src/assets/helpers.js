@@ -3,6 +3,14 @@ const isEmptyObj = obj => {
         return false;
     }
     return true;
-}
+};
 
-export { isEmptyObj };
+const str2bool = str => {
+    if (str && typeof str === "string") {
+        if (str.toLowerCase() === "true") return true;
+        if (str.toLowerCase() === "false") return false;
+    }
+    return str;
+};
+
+export { isEmptyObj, str2bool };
