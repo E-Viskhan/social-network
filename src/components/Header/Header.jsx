@@ -3,21 +3,14 @@ import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/auth-reducer";
 import { Button } from "@mui/material";
+import DropDownMenu from "./DropDownMenu";
 
-const Header = props => {
-    const isAuth = useSelector(state => state.auth.isAuth);
-    const login = useSelector(state => state.auth.login);
-    const dispatch = useDispatch();
-
+const Header = ({ isAuth, login, logout }) => {
     return (
         <header className={s.header}>
             <div className={s.loginBlock}>
                 {isAuth
-                    ? <div>
-                        <span>{login} - </span>
-                        <Button color='error' variant='contained' size='small'
-                                onClick={() => dispatch(logout())}>Logout</Button>
-                    </div>
+                    ? <DropDownMenu login={login} logout={logout}/>
                     : <NavLink to='/login' className={s.loginLink}>
                         <Button>Login</Button>
                     </NavLink>
@@ -27,4 +20,14 @@ const Header = props => {
     );
 };
 
-export default Header;
+const HeaderMain = props => {
+    const isAuth = useSelector(state => state.auth.isAuth);
+    const login = useSelector(state => state.auth.login);
+    const dispatch = useDispatch();
+
+    const headerProps = { isAuth, login, logout: () => dispatch(logout()) };
+
+    return <Header {...headerProps}/>;
+};
+
+export default HeaderMain;
